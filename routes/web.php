@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\PagesController;
+
+
+use App\Http\Controllers\API\PublisherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class, 'index'])->name('index');
+Route::get('/fetch_data', [PagesController::class, 'fetch_data'])->name('fetch_data');
+Route::get('/publishers/{publisher}/fetch_data', [PublisherController::class, 'fetch_data'])->name('fetch_data_publisher');
+
+Route::resource('publishers', PublisherController::class);
+
+

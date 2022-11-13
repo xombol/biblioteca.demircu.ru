@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\AuthorController;
+
 use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\PublisherController;
 use Illuminate\Http\Request;
@@ -21,7 +21,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('book', BookController::class);
-Route::resource('author', AuthorController::class);
-Route::resource('publisher', PublisherController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('publishers')->name('publishers.')->group(function () {
+        Route::get('/list', [PublisherController::class, 'list'])->name('list');
+    });
+
+    Route::apiResource('books', BookController::class);
+});
+
+
+
+
+
 
