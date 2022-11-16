@@ -39,12 +39,12 @@ class PublisherController extends Controller
      */
     public function store(PublisherRequest $request)
     {
-        $publishers = Publisher::query()->create($request->validated());
+        $publisher = Publisher::query()->create($request->validated());
 
-        $token = $publishers->createToken($publishers->name);
-        $publishers["token"] = $token->plainTextToken;
+        $token = $publisher->createToken($publisher->name,['books-check']);
+        $publisher["token"] = $token->plainTextToken;
 
-        return [$publishers];
+        return [$publisher];
     }
 
     /**
