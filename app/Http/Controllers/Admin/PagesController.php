@@ -8,27 +8,31 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+
+    /**
+     * Main page + catalog
+     *
+     * @return string
+     */
+
     public function index()
     {
-        $data = Book::query()->paginate(5);
+        $books = Book::query()->paginate(5);
 
-
-        return view('admin.pages.home', compact(['data']));
+        return view('admin.pages.home', ['books' => $books]);
     }
 
-    public function fetch_data(Request $request)
-
+    /**
+     * Pagination for the book catalog
+     *
+     * @return string
+     */
+    public function fetchData(Request $request)
     {
-
         if ($request->ajax()) {
+            $books = Book::query()->paginate(5);
 
-            $data = Book::query()->paginate(5);
-
-
-            return view('admin.layouts.components.pagination_data', compact('data'))->render();
-
+            return view('admin.layouts.components.pagination_data', ['books' => $books])->render();
         }
-
-
     }
 }

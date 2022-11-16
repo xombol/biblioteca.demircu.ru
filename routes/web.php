@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('index');
-Route::get('/fetch_data', [PagesController::class, 'fetch_data'])->name('fetch_data');
+Route::get('/fetch_data', [PagesController::class, 'fetchData'])->name('fetchData');
 Route::get('/publishers/{publisher}/fetch_data', [PublisherController::class, 'fetch_data'])->name('fetch_data_publisher');
 
 Route::resource('publishers', PublisherController::class);

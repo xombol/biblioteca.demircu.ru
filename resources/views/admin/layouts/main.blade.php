@@ -143,17 +143,16 @@
             success: function (data) {
                 if (data[0].id) {
                     console.log(data[0]);
-                    $('#success_text_title').html('Success added "' + data[0].name+ '"');
+                    $('#success_text_title').html('Success added "' + data[0].name + '"');
                     $('#success_text_sub_title').html('Your api token: ' + data[0].token);
                     $('.success_modal').show();
-                    $('#new_publisher').before('<li class="submenu-item "> <a href="/publishers/'+  data[0].id +' ">'+  data[0].name +'</a></li>');
+                    $('#new_publisher').before('<li class="submenu-item "> <a href="/publishers/' + data[0].id + ' ">' + data[0].name + '</a></li>');
 
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $('.success_modal').hide();
                         $(".form-control").each(function (index) {
                             $(this).val('');
                         });
-
 
 
                     }, 10000);

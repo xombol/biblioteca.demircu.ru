@@ -11,13 +11,13 @@
         </thead>
         <tbody>
 
-        @foreach($data as $row)
+        @foreach($books as $book)
             <tr>
-                <td>{{ $row->id }}</td>
-                <td>{{ $row->name }}</td>
-                <td>{{ $row->isbn }}</td>
-                <td><a href="{{route('publishers.show',$row->publisher )}}">{{ $row->publisher->name }}</a></td>
-                <td>@foreach($row->authors as $author) {{ $author->name }} <br> @endforeach</td>
+                <td>{{ $book->id }}</td>
+                <td>{{ $book->name }}</td>
+                <td>{{ $book->isbn }}</td>
+                <td><a href="{{route('publishers.show',$book->publisher )}}">{{ $book->publisher->name }}</a></td>
+                <td>@foreach($book->authors as $author) {{ $author->name }} <br> @endforeach</td>
             </tr>
         @endforeach
 
@@ -28,7 +28,7 @@
 
 
 <div class="nav_link">
-    {!! $data->links() !!}
+    {!! $books->links() !!}
 </div>
 
 
